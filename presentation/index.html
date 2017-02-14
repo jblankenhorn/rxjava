@@ -1,0 +1,262 @@
+<!doctype html>
+<!--suppress ALL -->
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>ReactiveX mit RxJava</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+  <link rel="stylesheet" href="css/reveal.css">
+  <link rel="stylesheet" href="css/theme/sky.css" id="theme">
+  <link rel="stylesheet" href="lib/css/zenburn.css">
+  <style>
+    section {
+      text-align: left;
+    }
+
+    .vspace {
+      height: 20px;
+    }
+
+    section .center {
+      text-align: center;
+    }
+
+    section .bold {
+      font-weight: bold;
+    }
+
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 0.5em !important;
+      text-transform: none !important;
+    }
+
+    h1 {
+      margin-top: 0em !important;
+      font-size: 1.5em !important;
+    }
+
+    h2 {
+      font-size: 1.1em !important;
+    }
+
+    h3 {
+      font-size: 1.0em !important;
+    }
+
+    li {
+      line-height: 1.5 !important;
+    }
+  </style>
+
+  <!-- Printing and PDF exports -->
+  <script>
+      var link = document.createElement('link');
+      link.rel = 'stylesheet';
+      link.type = 'text/css';
+      link.href = window.location.search.match(/print-pdf/gi) ? 'css/print/pdf.css' : 'css/print/paper.css';
+      document.getElementsByTagName('head')[0].appendChild(link);
+  </script>
+
+</head>
+
+<body>
+
+<div class="reveal">
+
+  <div class="slides">
+    <!-- Titel -->
+    <section>
+      <h1>ReactiveX mit RxJava</h1>
+
+      <div class="vspace"></div>
+      <h4>Roman Roelofsen - w11k GmbH / theCodeCampus</h4>
+      <small>
+        Twitter &amp; GitHub: <a href="https://twitter.com/romanroe">romanroe</a>
+      </small>
+    </section>
+
+    <!-- Über mich -->
+    <section data-markdown>
+      <!--@formatter:off-->
+      <script type="text/template">
+        ## Über mich
+        - Alpha Geek, Entwickler, Trainer
+        - w11k GmbH - <i>The Web Engineers</i>
+          - Individualsoftware
+        - theCodeCampus
+          - Schulungsanbieter Angular & TypeScript
+      </script>
+      <!--@formatter:on-->
+    </section>
+
+    <!-- Reaktive Programmierung -->
+    <section>
+      <h1>Reaktive Programmierung</h1>
+      <section></section>
+
+      <section data-markdown>
+        <!--@formatter:off-->
+      <script type="text/template">
+        > ... a programming paradigm oriented around **data flows** and the **propagation of change**."
+      </script>
+      <!--@formatter:on-->
+      </section>
+
+      <section>
+        <h2>Im Kleinen</h2>
+        <ul>
+          <li>Strom von Daten: <span class="fragment">Liste</span></li>
+          <li>Änderungen verfolgen: <span class="fragment">Events (Mouse-Clicks, ...)</span></li>
+        </ul>
+
+        <h2>Im Großen</h2>
+        <ul>
+          <li>Strom von Daten: <span class="fragment">Web-Sockets</span></li>
+          <li>Änderungen verfolgen: <span class="fragment">Message Bus</span></li>
+        </ul>
+      </section>
+
+      <section>
+        <div class="center bold">
+          <span>Iterator</span> + <span>Callback</span>
+        </div>
+      </section>
+
+      <section>
+        <h2>Iterator</h2>
+        <ul>
+          <li><code>java.util.Iterator</code></li>
+          <li>Synchron, Pull</li>
+          <li>Keine Fehler-Konzept</li>
+        </ul>
+        <h2>Callback</h2>
+        <ul>
+          <li><code>java.util.function.Funtion&lt;T, R&gt;</code></li>
+          <li>Asynchron, Push</li>
+          <li>Kein standardisiertes Fehler-Konzept</li>
+        </ul>
+      </section>
+
+    </section>
+
+    <!-- ReactiveX -->
+    <section>
+      <h1>ReactiveX</h1>
+      <section data-markdown>
+        <!--@formatter:off-->
+      <script type="text/template">
+        - RxJava
+        - http://reactivex.io
+        - Implementierungen für
+          - Java, JavaScript/TypeScript, .NET, Scala, Clojure, Swift, etc.
+
+      </script>
+      <!--@formatter:on-->
+      </section>
+
+      <section data-markdown>
+        <!--@formatter:off-->
+      <script type="text/template">
+        - Observable
+          - Liefert Daten
+          ![](observable.png)
+        - Observer
+          - Bekommt Daten
+        - Subject
+          - Observable *und* Observer
+      </script>
+      <!--@formatter:on-->
+      </section>
+
+    </section>
+
+    <!-- Demo -->
+    <section>
+      <h1>Demo</h1>
+    </section>
+
+
+    <section>
+      <h3>Fazit</h3>
+
+      <section data-markdown>
+        <!--@formatter:off-->
+        <script type="text/template">
+          - Lernkurve:
+            - kurz flach
+            - dann lange steil
+            - dann wieder flach
+          - ReactiveX macht komplexe Datenflüsse "einfach"
+          - Keine komplexe Datenflüsse? Dann Finger weg...
+          - Kein echtes Projekt zum Lernen nehmen, niemals!
+          - http://rxmarbles.com
+        </script>
+        <!--@formatter:on-->
+      </section>
+
+    </section>
+
+    <section>
+      <p>Roman Roelofsen</p>
+
+      <p>@romanroe</p>
+    </section>
+
+
+  </div>
+
+</div>
+
+<script src="lib/js/head.min.js"></script>
+<script src="js/reveal.js"></script>
+
+<script>
+
+    // Full list of configuration options available at:
+    // https://github.com/hakimel/reveal.js#configuration
+    Reveal.initialize({
+        controls: true,
+        margin: 0.05,
+        progress: true,
+        slideNumber: true,
+        history: true,
+        center: true,
+
+        transition: 'slide', // none/fade/slide/convex/concave/zoom
+
+        // Optional reveal.js plugins
+        dependencies: [
+            {
+                src: 'lib/js/classList.js', condition: function () {
+                return !document.body.classList;
+            }
+            },
+            {
+                src: 'plugin/markdown/marked.js', condition: function () {
+                return !!document.querySelector('[data-markdown]');
+            }
+            },
+            {
+                src: 'plugin/markdown/markdown.js', condition: function () {
+                return !!document.querySelector('[data-markdown]');
+            }
+            },
+            {
+                src: 'plugin/highlight/highlight.js',
+                async: true,
+//        condition: function () {
+//          return !!document.querySelector('pre code');
+//        },
+                callback: function () {
+                    hljs.initHighlightingOnLoad();
+                }
+            },
+            {src: 'plugin/zoom-js/zoom.js', async: true},
+            {src: 'plugin/notes/notes.js', async: true}
+        ]
+    });
+
+</script>
+
+</body>
+</html>
