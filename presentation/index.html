@@ -201,7 +201,17 @@
       </section>
 
       <section>
-        <h2>Subscribe</h2>
+        <h2>API - cold/synchron</h2>
+
+        <div>
+          <pre>Observable&lt;Integer&gt; observable = Observable.create(e -> {
+        e.onNext(1);
+        e.onNext(2);
+        e.onComplete();
+});</pre>
+        </div>
+
+        <div class="fragment">
         <pre>observable.subscribe(new Observer&lt;Integer&gt;() {
     public void onSubscribe(Disposable d) {
     }
@@ -212,14 +222,8 @@
     public void onComplete() {
     }
 });</pre>
-        <div class="fragment">
-          <h2>Observer</h2>
-          <pre>Observable&lt;Integer&gt; observable = Observable.create(e -> {
-        e.onNext(1);
-        e.onNext(2);
-        e.onComplete();
-});</pre>
         </div>
+
       </section>
 
       <section>
@@ -286,7 +290,17 @@
         ...
 });</pre>
           </li>
-          <li class="fragment">z.B. Servlet -> Subject -> Observer</li>
+          <li class="fragment">z.B. Servlet -> Subject -> Observer
+            <pre>public class Servlet extends HttpServlet {
+
+    protected void doGet(HttpServletRequest req,
+                         HttpServletResponse res) {
+
+        subject.onNext(Pair.of(req, res));
+
+    }
+}</pre>
+          </li>
 
         </ul>
       </section>
@@ -325,12 +339,82 @@ sub1.onNext(6);</pre>
         </div>
       </section>
 
+      <section>
+        <h2>ReplaySubject</h2>
+        <pre>Subject&lt;Integer&gt; sub1 = BehaviorSubject.createDefault(99);
+sub1.subscribe(System.out::println);
+sub1.onNext(1);
+sub1.onNext(2);
+sub1.onNext(3);</pre>
+
+        <div class="fragment">
+          <h3>Ausgabe</h3>
+          <pre>99
+1
+2
+3</pre>
+        </div>
+      </section>
 
     </section>
 
+    <section>
+      <h2>Marble Diagramme</h2>
+
+      <section></section>
+
+      <section>
+        <h2>zip</h2>
+        <img src="./zip.png">
+      </section>
+
+      <section>
+        <h2>map</h2>
+        <img src="./map.png">
+      </section>
+
+      <section>
+        <h2>flatMap</h2>
+        <img src="./flatmap.png">
+      </section>
+    </section>
 
     <section>
-      <h3>Fazit</h3>
+      <h1>Schedulers</h1>
+
+      <section></section>
+
+      <section>
+        <ul>
+          <li>Observable Streams sind nicht grundsätzlich asynchron!</li>
+          <li>Schedulers verlagern den Observer und die Operatoren in Threads</li>
+        </ul>
+        <pre class="fragment">obs$.observeOn(Schedulers.io()).map(i -> ioBound(i));
+obs$.observeOn(Schedulers.computation()).map(i -> heavyOnCpu(i));</pre>
+      </section>
+    </section>
+
+    <section>
+      <h1>Java 9 Flow API</h1>
+      <ul>
+        <li>ab Java 9</li>
+        <li>Reactive Programming basierend auf http://www.reactive-streams.org/</li>
+        <li>Observable -> Flowable</li>
+        <li>*Subject -> *Processor</li>
+      </ul>
+    </section>
+
+    <section>
+      <h1>Diverses</h1>
+      <ul>
+        <li>Ratpack - https://ratpack.io/</li>
+        <li>Akka - http://akka.io/</li>
+        <li>RxJS</li>
+      </ul>
+    </section>
+
+    <section>
+      <h1>Fazit</h1>
 
       <section data-markdown>
         <!--@formatter:off-->
@@ -341,7 +425,7 @@ sub1.onNext(6);</pre>
             - dann wieder flach
           - ReactiveX macht komplexe Datenflüsse "einfach"
           - Keine komplexe Datenflüsse? Dann Finger weg...
-          - Kein echtes Projekt zum Lernen nehmen, niemals!
+          - Kein echtes Projekt zum Lernen nehmen!
           - http://rxmarbles.com
         </script>
         <!--@formatter:on-->
@@ -350,7 +434,7 @@ sub1.onNext(6);</pre>
     </section>
 
     <section>
-      <p>Roman Roelofsen</p>
+      <p>Roman Roelofsen - w11k GmbH</p>
 
       <p>@romanroe</p>
     </section>

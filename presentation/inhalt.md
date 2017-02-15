@@ -1,8 +1,6 @@
 
 # Presentation
 
-Subjects
-Marble Diagrams
 Java 9 Flow
 
 

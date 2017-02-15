@@ -63,14 +63,18 @@ public final class DemoSwing {
             }
         });
 
-        Observable.merge(input$, button$)
-                .distinctUntilChanged()
-                .flatMap(Utils::createObservableReturn3ValuesIn3Seconds)
-                .subscribe(t -> {
-                    result.setText((System.currentTimeMillis() / 1000) + ": " + t + "\n" + result.getText());
-                });
+        result.setText((System.currentTimeMillis() / 1000) + ": start");
 
 
+
+
+
+//        Observable.merge(input$, button$)
+//                .distinctUntilChanged()
+//                .flatMap(Utils::createObservableReturn3ValuesIn3Seconds)
+//                .subscribe(t -> {
+//                    result.setText((System.currentTimeMillis() / 1000) + ": " + t + "\n" + result.getText());
+//                });
     }
 
 
