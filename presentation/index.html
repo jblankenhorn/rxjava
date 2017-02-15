@@ -46,6 +46,12 @@
     li {
       line-height: 1.5 !important;
     }
+
+    pre {
+      background-color: #230600;
+      color: white;
+    }
+
   </style>
 
   <!-- Printing and PDF exports -->
@@ -117,12 +123,6 @@
       </section>
 
       <section>
-        <div class="center bold">
-          <span>Iterator</span> + <span>Callback</span>
-        </div>
-      </section>
-
-      <section>
         <h2>Iterator</h2>
         <ul>
           <li><code>java.util.Iterator</code></li>
@@ -137,6 +137,16 @@
         </ul>
       </section>
 
+      <section>
+        <div class="center bold">
+          Reactive Programming = <span>Iterator</span> + <span>Callback</span>
+        </div>
+        <div class="vspace"></div>
+        <div class="center bold fragment">
+          (+ Fehlerbehandlung)
+        </div>
+      </section>
+
     </section>
 
     <!-- ReactiveX -->
@@ -149,10 +159,14 @@
         - http://reactivex.io
         - Implementierungen für
           - Java, JavaScript/TypeScript, .NET, Scala, Clojure, Swift, etc.
-
       </script>
       <!--@formatter:on-->
       </section>
+
+    </section>
+
+    <section>
+      <h1>API</h1>
 
       <section data-markdown>
         <!--@formatter:off-->
@@ -162,6 +176,7 @@
           ![](observable.png)
         - Observer
           - Bekommt Daten
+        - `subscribe` am Observable -> `Disposable`
       </script>
       <!--@formatter:on-->
       </section>
@@ -181,15 +196,137 @@
         </ul>
       </section>
 
-      <!-- Demo -->
       <section>
-        <h1>Demo</h1>
+        <h1>Demo - Operatoren</h1>
+      </section>
+
+      <section>
+        <h2>Subscribe</h2>
+        <pre>observable.subscribe(new Observer&lt;Integer&gt;() {
+    public void onSubscribe(Disposable d) {
+    }
+    public void onNext(Integer i) {
+    }
+    public void onError(Throwable e) {
+    }
+    public void onComplete() {
+    }
+});</pre>
+        <div class="fragment">
+          <h2>Observer</h2>
+          <pre>Observable&lt;Integer&gt; observable = Observable.create(e -> {
+        e.onNext(1);
+        e.onNext(2);
+        e.onComplete();
+});</pre>
+        </div>
+      </section>
+
+      <section>
+        <h2>Fehlerbehandung</h2>
+        <div>
+          <h2>Observer</h2>
+          <pre>Observable&lt;Integer&gt; observable = Observable.create(e -> {
+        e.onNext(1);
+        e.onNext(2);
+        e.onError(new RuntimeException("error"));
+        e.onNext(3); // wird nicht "gesendet"
+});</pre>
+        </div>
+        <ul>
+          <li>Stream termininert bei einem Fehler!</li>
+        </ul>
+      </section>
+
+    </section>
+
+    <section>
+      <h1>Use Cases</h1>
+
+      <section>
+        <h2>Http Client - RxNetty</h2>
+        <pre>HttpClient.newClient(serverAddress)
+    .enableWireLogging("hello-client", LogLevel.ERROR)
+    .createGet("/hello")
+    .doOnNext(resp -> logger.info(resp.toString()))
+    .flatMap(resp -> resp.getContent()
+                         .map(bb ->
+                            bb.toString(Charset.defaultCharset())))</pre>
+      </section>
+
+      <section>
+        <h2>Http Client - Netflix Ribbon</h2>
+        <img src="./ribbon.png">
+      </section>
+
+      <section>
+        <h2>User Interface</h2>
+        <img src="./ui.png" height="400px">
+      </section>
+
+    </section>
+
+    <section>
+      <h1>Subject</h1>
+
+      <section></section>
+
+      <section>
+        <ul>
+          <li>Observable und Observer</li>
+          <li>Multiplexer</li>
+          <li>Puffer</li>
+        </ul>
+      </section>
+      <section>
+        <ul>
+          <li>Nützlich, wenn Datenquelle nicht verschachtelt werden kann
+            <pre>Observable.create(e -> {
+        ...
+        ...
+});</pre>
+          </li>
+          <li class="fragment">z.B. Servlet -> Subject -> Observer</li>
+
+        </ul>
+      </section>
+
+      <section>
+        <h2>PublishSubject</h2>
+        <pre>Subject&lt;Integer&gt; sub1 = PublishSubject.create();
+  sub1.onNext(1);
+  sub1.onNext(2);
+  sub1.subscribe(System.out::println);
+  sub1.onNext(3);</pre>
+
+        <div class="fragment">
+          <h3>Ausgabe</h3>
+          <pre>3</pre>
+        </div>
+      </section>
+
+      <section>
+        <h2>ReplaySubject</h2>
+        <pre>Subject&lt;Integer&gt; sub1 = ReplaySubject.createWithSize(3);
+sub1.onNext(1);
+sub1.onNext(2);
+sub1.onNext(3);
+sub1.onNext(4);
+sub1.onNext(5);
+sub1.subscribe(System.out::println);
+sub1.onNext(6);</pre>
+
+        <div class="fragment">
+          <h3>Ausgabe</h3>
+          <pre>3
+4
+5
+6</pre>
+        </div>
       </section>
 
 
     </section>
-
-
 
 
     <section>

@@ -2,35 +2,29 @@
 # Presentation
 
 Subjects
+Marble Diagrams
+Java 9 Flow
 
 
-
-
-
-# Demo
+# Demo 1
 
 
 Observable.just
-.filter
-.map
-
-.zip
-
+filter
+map
+zipWith
+distinctUntilChanged
 create
 interval
 combineLatest
-
-
+Utils::createObservableReturn3ValuesIn3Seconds
 flatMap
 
 
-fromEvent, map
-debounceTime
-
-
-
+# Demo 2 - Swing
 
 Subject
+share?
 Multiplexer
 ReplaySubject
 
