@@ -91,14 +91,17 @@
           - Java / Angular
         - theCodeCampus.de
           - Schulungsanbieter Angular & TypeScript
+          - öffentliche & Inhouse Schulungen
       </script>
       <!--@formatter:on-->
 				</section>
 
 				<!-- Reaktive Programmierung -->
 				<section>
-					<h1>Reaktive Programmierung</h1>
-					<section></section>
+
+					<section>
+						<h1>Reaktive Programmierung</h1>
+					</section>
 
 					<section data-markdown>
 						<!--@formatter:off-->
@@ -123,6 +126,10 @@
 					</section>
 
 					<section>
+						<h1>... und jetzt im Detail ...</h1>
+					</section>
+
+					<section>
 						<h2>Liste</h2>
 						<ul class="fragment">
 							<li><code>java.util.Iterator</code></li>
@@ -131,7 +138,7 @@
 						</ul>
 						<h2>Events</h2>
 						<ul class="fragment">
-							<li>Callback <code>java.util.function.Funtion&lt;T, R&gt;</code></li>
+							<li>Callback <code>java.util.function.Function&lt;T, R&gt;</code></li>
 							<li>Asynchron, Push</li>
 							<li>Kein standardisiertes Fehler-Konzept</li>
 						</ul>
@@ -161,7 +168,8 @@
 
 				<!-- ReactiveX -->
 				<section>
-					<h1>ReactiveX</h1>
+				<section><h1>ReactiveX</h1></section>
+
 					<section data-markdown>
 						<!--@formatter:off-->
       <script type="text/template">
@@ -177,7 +185,10 @@
 
 				<section>
 
+					<section>
+
 					<h1>API</h1>
+					</section>
 
 					<section data-markdown>
 						<!--@formatter:off-->
@@ -248,7 +259,10 @@
 				</section>
 
 				<section>
+					<section>
+
 					<h1>Use Cases</h1>
+					</section>
 
 					<section>
 						<h2>Http Client - RxNetty</h2>
@@ -274,11 +288,14 @@
 				</section>
 
 				<section>
-					<h1>Subject</h1>
-
-					<section></section>
 
 					<section>
+
+					<h1>Subject</h1>
+					</section>
+
+					<section>
+					<h1>Subject</h1>
 						<ul>
 							<li>Observable und Observer</li>
 							<li>Multiplexer</li>
@@ -362,31 +379,32 @@ sub1.onNext(3);</pre>
 				</section>
 
 				<section>
-					<h2>Marble Diagramme</h2>
+					<section>
 
-					<section></section>
+
+					<h1>Marble Diagramme</h1>
+					</section>
 
 					<section>
 						<h2>zip</h2>
 						<img src="./zip.png">
+						<a href="http://rxmarbles.com/#zip">http://rxmarbles.com/#zip</a>
 					</section>
 
 					<section>
 						<h2>map</h2>
 						<img src="./map.png">
+						<a href="http://rxmarbles.com/#map">http://rxmarbles.com/#map</a>
 					</section>
 
-					<section>
-						<h2>flatMap</h2>
-						<span>transform the items emitted by an Observable into Observables, then flatten the emissions from those into a single Observable</span>
-						<img src="./flatmap.png">
-					</section>
 				</section>
 
 				<section>
+
+					<section>
 					<h1>Schedulers</h1>
 
-					<section></section>
+					</section>
 
 					<section>
 						<ul>
@@ -399,13 +417,19 @@ obs$.observeOn(Schedulers.computation()).map(i -> heavyOnCpu(i));</pre>
 				</section>
 
 				<section>
-					<h1>Java 9 Flow API</h1>
+					<section>
+						<h1>Java 9 Flow API</h1>
+
+					</section>
+					<section>
+
 					<ul>
 						<li>ab Java 9</li>
 						<li>Reaktive Programmierung basierend auf http://www.reactive-streams.org/</li>
 						<li>Observable -> Flowable</li>
 						<li>*Subject -> *Processor</li>
 					</ul>
+					</section>
 				</section>
 
 				<section>
@@ -418,7 +442,10 @@ obs$.observeOn(Schedulers.computation()).map(i -> heavyOnCpu(i));</pre>
 				</section>
 
 				<section>
+					<section>
+
 					<h1>Fazit</h1>
+					</section>
 
 					<section data-markdown>
 						<!--@formatter:off-->
@@ -455,6 +482,7 @@ obs$.observeOn(Schedulers.computation()).map(i -> heavyOnCpu(i));</pre>
 			// - https://github.com/hakimel/reveal.js#configuration
 			// - https://github.com/hakimel/reveal.js#dependencies
 			Reveal.initialize({
+			  	history: true,
 				dependencies: [
 					{ src: 'plugin/markdown/marked.js' },
 					{ src: 'plugin/markdown/markdown.js' },

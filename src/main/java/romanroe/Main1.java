@@ -45,7 +45,7 @@ public final class Main1 {
 		final Observable<Object> obsError = Observable.create(o -> {
 			o.onNext(1);
 			o.onNext(2);
-			o.onError(new RuntimeException("Fehler beim JFS???"));
+			o.onError(new RuntimeException("Fehler???"));
 			o.onNext(3);
 		});
 
