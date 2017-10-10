@@ -1,297 +1,300 @@
 <!doctype html>
-<!--suppress ALL -->
-<html lang="en">
-<head>
-  <meta charset="utf-8">
-  <title>ReactiveX mit RxJava</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
-  <link rel="stylesheet" href="css/reveal.css">
-  <link rel="stylesheet" href="css/theme/sky.css" id="theme">
-  <link rel="stylesheet" href="lib/css/zenburn.css">
-  <style>
-    section {
-      text-align: left;
-    }
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
-    .vspace {
-      height: 20px;
-    }
+		<title>reveal.js</title>
 
-    section .center {
-      text-align: center;
-    }
+		<link rel="stylesheet" href="css/reveal.css">
+		<link rel="stylesheet" href="css/theme/simple.css">
 
-    section .bold {
-      font-weight: bold;
-    }
+		<!-- Theme used for syntax highlighting of code -->
+		<link rel="stylesheet" href="lib/css/zenburn.css">
 
-    h1, h2, h3, h4, h5, h6 {
-      margin-top: 0.5em !important;
-      text-transform: none !important;
-    }
+		<!-- Printing and PDF exports -->
+		<script>
+			var link = document.createElement( 'link' );
+			link.rel = 'stylesheet';
+			link.type = 'text/css';
+			link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+			document.getElementsByTagName( 'head' )[0].appendChild( link );
+		</script>
+		<style>
+			section {
+				text-align: left;
+			}
 
-    h1 {
-      margin-top: 0em !important;
-      font-size: 1.5em !important;
-    }
+			.vspace {
+				height: 20px;
+			}
 
-    h2 {
-      font-size: 1.1em !important;
-    }
+			section .center {
+				text-align: center;
+			}
 
-    h3 {
-      font-size: 1.0em !important;
-    }
+			section .bold {
+				font-weight: bold;
+			}
 
-    li {
-      line-height: 1.5 !important;
-    }
+			h1, h2, h3, h4, h5, h6 {
+				margin-top: 0.5em !important;
+				text-transform: none !important;
+			}
 
-    pre {
-      background-color: #230600;
-      color: white;
-    }
+			h1 {
+				margin-top: 0em !important;
+				font-size: 1.5em !important;
+			}
 
-  </style>
+			h2 {
+				font-size: 1.1em !important;
+			}
 
-  <!-- Printing and PDF exports -->
-  <script>
-      var link = document.createElement('link');
-      link.rel = 'stylesheet';
-      link.type = 'text/css';
-      link.href = window.location.search.match(/print-pdf/gi) ? 'css/print/pdf.css' : 'css/print/paper.css';
-      document.getElementsByTagName('head')[0].appendChild(link);
-  </script>
+			h3 {
+				font-size: 1.0em !important;
+			}
 
-</head>
+			li {
+				line-height: 1.5 !important;
+			}
 
-<body>
+			pre {
+				background-color: #230600;
+				color: white;
+			}
 
-<div class="reveal">
+		</style>
+	</head>
+	<body>
+		<div class="reveal">
+			<div class="slides">
+				<!-- Titel -->
+				<section>
+					<h1>ReactiveX mit RxJava</h1>
 
-  <div class="slides">
-    <!-- Titel -->
-    <section>
-      <h1>ReactiveX mit RxJava</h1>
+					<div class="vspace"></div>
+						<h4>Jan Blankenhorn - W11K GmbH / theCodeCampus</h4>
+					<small>
+						Twitter &amp; GitHub: <a href="https://twitter.com/jblankenhorn">jblankenhorn</a>
+					</small>
+				</section>
 
-      <div class="vspace"></div>
-      <h4>Roman Roelofsen - w11k GmbH / theCodeCampus</h4>
-      <small>
-        Twitter &amp; GitHub: <a href="https://twitter.com/romanroe">romanroe</a>
-      </small>
-    </section>
-
-    <!-- Über mich -->
-    <section data-markdown>
-      <!--@formatter:off-->
+				<!-- Über mich -->
+				<section data-markdown>
+					<!--@formatter:off-->
       <script type="text/template">
         ## Über mich
-        - Alpha Geek, Entwickler, Trainer
-        - w11k GmbH - <i>The Web Engineers</i>
+        - Entwickler, Trainer, Geschäftsführer
+        - W11K GmbH - <i>The Web Engineers</i> (Esslingen, Bonn)
           - Individualsoftware
-        - theCodeCampus
+          - Java / Angular
+        - theCodeCampus.de
           - Schulungsanbieter Angular & TypeScript
       </script>
       <!--@formatter:on-->
-    </section>
+				</section>
 
-    <!-- Reaktive Programmierung -->
-    <section>
-      <h1>Reaktive Programmierung</h1>
-      <section></section>
+				<!-- Reaktive Programmierung -->
+				<section>
+					<h1>Reaktive Programmierung</h1>
+					<section></section>
 
-      <section data-markdown>
-        <!--@formatter:off-->
+					<section data-markdown>
+						<!--@formatter:off-->
       <script type="text/template">
         > ... a programming paradigm oriented around **data flows** and the **propagation of change**."
       </script>
       <!--@formatter:on-->
-      </section>
+					</section>
 
-      <section>
-        <h2>Im Kleinen</h2>
-        <ul>
-          <li>Strom von Daten: <span class="fragment">Liste</span></li>
-          <li>Änderungen verfolgen: <span class="fragment">Events (Mouse-Clicks, ...)</span></li>
-        </ul>
+					<section>
+						<h2>Im Kleinen</h2>
+						<ul>
+							<li>Strom von Daten: <span class="fragment">Liste</span></li>
+							<li>Änderungen verfolgen: <span class="fragment">Events (Mouse-Clicks, ...)</span></li>
+						</ul>
 
-        <h2>Im Großen</h2>
-        <ul>
-          <li>Strom von Daten: <span class="fragment">Web-Sockets</span></li>
-          <li>Änderungen verfolgen: <span class="fragment">Message Bus</span></li>
-        </ul>
-      </section>
+						<h2>Im Großen</h2>
+						<ul>
+							<li>Strom von Daten: <span class="fragment">Web-Sockets</span></li>
+							<li>Änderungen verfolgen: <span class="fragment">Message Bus</span></li>
+						</ul>
+					</section>
 
-      <section>
-        <h2>Iterator</h2>
-        <ul>
-          <li><code>java.util.Iterator</code></li>
-          <li>Synchron, Pull</li>
-          <li>Keine Fehler-Konzept</li>
-        </ul>
-        <h2>Callback</h2>
-        <ul>
-          <li><code>java.util.function.Funtion&lt;T, R&gt;</code></li>
-          <li>Asynchron, Push</li>
-          <li>Kein standardisiertes Fehler-Konzept</li>
-        </ul>
-      </section>
+					<section>
+						<h2>Liste</h2>
+						<ul class="fragment">
+							<li><code>java.util.Iterator</code></li>
+							<li>Synchron, Pull</li>
+							<li>Kein Fehler-Konzept</li>
+						</ul>
+						<h2>Events</h2>
+						<ul class="fragment">
+							<li>Callback <code>java.util.function.Funtion&lt;T, R&gt;</code></li>
+							<li>Asynchron, Push</li>
+							<li>Kein standardisiertes Fehler-Konzept</li>
+						</ul>
+					</section>
 
-      <section>
-        <div class="center bold">
-          Reactive Programming = <span>Iterator</span> + <span>Callback</span>
-        </div>
-        <div class="vspace"></div>
-        <div class="center bold fragment">
-          (+ Fehlerbehandlung)
-        </div>
-      </section>
+					<section>
+						<div class="center bold">
+							Reaktive Programmierung = <span>Iterator</span> + <span>Callback</span>
+						</div>
+						<div class="vspace"></div>
+						<div class="center bold fragment">
+							(+ Fehlerbehandlung)
+						</div>
+					</section>
 
-    </section>
-
-    <!-- ReactiveX -->
-    <section>
-      <h1>ReactiveX</h1>
-      <section data-markdown>
-        <!--@formatter:off-->
+					<section data-markdown>
+						<!--@formatter:off-->
       <script type="text/template">
-        - RxJava
+	    ![](observable.png)
+
+      </script>
+      <!--@formatter:on-->
+					</section>
+
+
+				</section>
+
+				<!-- ReactiveX -->
+				<section>
+					<h1>ReactiveX</h1>
+					<section data-markdown>
+						<!--@formatter:off-->
+      <script type="text/template">
         - http://reactivex.io
         - Implementierungen für
           - Java, JavaScript/TypeScript, .NET, Scala, Clojure, Swift, etc.
+        - RxJava (https://github.com/ReactiveX/RxJava)
       </script>
       <!--@formatter:on-->
-      </section>
+					</section>
 
-    </section>
+				</section>
 
-    <section>
-      <h1>API</h1>
+				<section>
 
-      <section data-markdown>
-        <!--@formatter:off-->
+					<h1>API</h1>
+
+					<section data-markdown>
+						<!--@formatter:off-->
       <script type="text/template">
         - Observable
           - Liefert Daten
-          ![](observable.png)
         - Observer
           - Bekommt Daten
         - `subscribe` am Observable -> `Disposable`
       </script>
       <!--@formatter:on-->
-      </section>
+					</section>
 
-      <section>
-        <h2>Operatoren</h2>
-        <ul>
-          <li>Methoden am Observable</li>
-          <ul>
-            <li><code>map/filter/...</code></li>
-          </ul>
-          <li>Kombination von Observables</li>
-          <ul>
-            <li><code>flatMap/withLatestFrom/...</code></li>
-          </ul>
-          <li>Operatoren erzeugen immer neue <code>Observable</code>s</li>
-        </ul>
-      </section>
+					<section>
+						<h2>Operatoren</h2>
+						<ul>
+							<li>Methoden am Observable</li>
+							<ul>
+								<li><code>map/filter/...</code></li>
+							</ul>
+							<li>Kombination von Observables</li>
+							<ul>
+								<li><code>flatMap/withLatestFrom/...</code></li>
+							</ul>
+							<li>Operatoren erzeugen immer neue <code>Observable</code>s</li>
+						</ul>
+					</section>
 
-      <section>
-        <h1>Demo - Operatoren</h1>
-      </section>
+					<section>
+						<h1>Demo - Operatoren</h1>
+					</section>
 
-      <section>
-        <h2>API - cold/synchron</h2>
+					<section>
+						<h2>cold vs hot</h2>
+						<ul class="fragment">
+						<li>
+							<i>Cold observables start running upon subscription,....</i>
+						</li>
+						</ul>
 
-        <div>
-          <pre>Observable&lt;Integer&gt; observable = Observable.create(e -> {
-        e.onNext(1);
-        e.onNext(2);
-        e.onComplete();
-});</pre>
-        </div>
+						<ul class="fragment">
+							<li>
 
-        <div class="fragment">
-        <pre>observable.subscribe(new Observer&lt;Integer&gt;() {
-    public void onSubscribe(Disposable d) {
-    }
-    public void onNext(Integer i) {
-    }
-    public void onError(Throwable e) {
-    }
-    public void onComplete() {
-    }
-});</pre>
-        </div>
+						<i>This is different from hot
+							observables such as mouse move events or stock tickers which are already producing values even before a
+							subscription is active.</i>
+							</li>
+						</ul>
+					</section>
 
-      </section>
 
-      <section>
-        <h2>Fehlerbehandung</h2>
-        <div>
-          <h2>Observer</h2>
-          <pre>Observable&lt;Integer&gt; observable = Observable.create(e -> {
+					<section>
+						<h2>Fehlerbehandung</h2>
+						<div>
+							<h2>Observer</h2>
+							<pre>Observable&lt;Integer&gt; observable = Observable.create(e -> {
         e.onNext(1);
         e.onNext(2);
         e.onError(new RuntimeException("error"));
         e.onNext(3); // wird nicht "gesendet"
 });</pre>
-        </div>
-        <ul>
-          <li>Stream termininert bei einem Fehler!</li>
-        </ul>
-      </section>
+						</div>
+						<ul>
+							<li>Stream termininert bei einem Fehler!</li>
+						</ul>
+					</section>
 
-    </section>
+				</section>
 
-    <section>
-      <h1>Use Cases</h1>
+				<section>
+					<h1>Use Cases</h1>
 
-      <section>
-        <h2>Http Client - RxNetty</h2>
-        <pre>HttpClient.newClient(serverAddress)
+					<section>
+						<h2>Http Client - RxNetty</h2>
+						<pre>HttpClient.newClient(serverAddress)
     .enableWireLogging("hello-client", LogLevel.ERROR)
     .createGet("/hello")
     .doOnNext(resp -> logger.info(resp.toString()))
     .flatMap(resp -> resp.getContent()
                          .map(bb ->
                             bb.toString(Charset.defaultCharset())))</pre>
-      </section>
+					</section>
 
-      <section>
-        <h2>Http Client - Netflix Ribbon</h2>
-        <img src="./ribbon.png">
-      </section>
+					<section>
+						<h2>Http Client - Netflix Ribbon</h2>
+						<img src="./ribbon.png">
+					</section>
 
-      <section>
-        <h2>User Interface</h2>
-        <img src="./ui.png" height="400px">
-      </section>
+					<section>
+						<h2>User Interface</h2>
+						<img src="./ui.png" height="400px">
+					</section>
 
-    </section>
+				</section>
 
-    <section>
-      <h1>Subject</h1>
+				<section>
+					<h1>Subject</h1>
 
-      <section></section>
+					<section></section>
 
-      <section>
-        <ul>
-          <li>Observable und Observer</li>
-          <li>Multiplexer</li>
-          <li>Puffer</li>
-        </ul>
-      </section>
-      <section>
-        <ul>
-          <li>Nützlich, wenn Datenquelle nicht verschachtelt werden kann
-            <pre>Observable.create(e -> {
+					<section>
+						<ul>
+							<li>Observable und Observer</li>
+							<li>Multiplexer</li>
+							<li>Puffer</li>
+						</ul>
+					</section>
+					<section>
+						<ul>
+							<li>Nützlich, wenn Datenquelle nicht verschachtelt werden kann
+								<pre>Observable.create(e -> {
         ...
         ...
 });</pre>
-          </li>
-          <li class="fragment">z.B. Servlet -> Subject -> Observer
-            <pre>public class Servlet extends HttpServlet {
+							</li>
+							<li class="fragment">z.B. Servlet -> Subject -> Observer
+								<pre>public class Servlet extends HttpServlet {
 
     protected void doGet(HttpServletRequest req,
                          HttpServletResponse res) {
@@ -300,28 +303,28 @@
 
     }
 }</pre>
-          </li>
+							</li>
 
-        </ul>
-      </section>
+						</ul>
+					</section>
 
-      <section>
-        <h2>PublishSubject</h2>
-        <pre>Subject&lt;Integer&gt; sub1 = PublishSubject.create();
+					<section>
+						<h2>PublishSubject</h2>
+						<pre>Subject&lt;Integer&gt; sub1 = PublishSubject.create();
   sub1.onNext(1);
   sub1.onNext(2);
   sub1.subscribe(System.out::println);
   sub1.onNext(3);</pre>
 
-        <div class="fragment">
-          <h3>Ausgabe</h3>
-          <pre>3</pre>
-        </div>
-      </section>
+						<div class="fragment">
+							<h3>Ausgabe</h3>
+							<pre>3</pre>
+						</div>
+					</section>
 
-      <section>
-        <h2>ReplaySubject</h2>
-        <pre>Subject&lt;Integer&gt; sub1 = ReplaySubject.createWithSize(3);
+					<section>
+						<h2>ReplaySubject</h2>
+						<pre>Subject&lt;Integer&gt; sub1 = ReplaySubject.createWithSize(3);
 sub1.onNext(1);
 sub1.onNext(2);
 sub1.onNext(3);
@@ -330,94 +333,95 @@ sub1.onNext(5);
 sub1.subscribe(System.out::println);
 sub1.onNext(6);</pre>
 
-        <div class="fragment">
-          <h3>Ausgabe</h3>
-          <pre>3
+						<div class="fragment">
+							<h3>Ausgabe</h3>
+							<pre>3
 4
 5
 6</pre>
-        </div>
-      </section>
+						</div>
+					</section>
 
-      <section>
-        <h2>ReplaySubject</h2>
-        <pre>Subject&lt;Integer&gt; sub1 = BehaviorSubject.createDefault(99);
+					<section>
+						<h2>BehaviorSubject</h2>
+						<pre>Subject&lt;Integer&gt; sub1 = BehaviorSubject.createDefault(99);
 sub1.subscribe(System.out::println);
 sub1.onNext(1);
 sub1.onNext(2);
 sub1.onNext(3);</pre>
 
-        <div class="fragment">
-          <h3>Ausgabe</h3>
-          <pre>99
+						<div class="fragment">
+							<h3>Ausgabe</h3>
+							<pre>99
 1
 2
 3</pre>
-        </div>
-      </section>
+						</div>
+					</section>
 
-    </section>
+				</section>
 
-    <section>
-      <h2>Marble Diagramme</h2>
+				<section>
+					<h2>Marble Diagramme</h2>
 
-      <section></section>
+					<section></section>
 
-      <section>
-        <h2>zip</h2>
-        <img src="./zip.png">
-      </section>
+					<section>
+						<h2>zip</h2>
+						<img src="./zip.png">
+					</section>
 
-      <section>
-        <h2>map</h2>
-        <img src="./map.png">
-      </section>
+					<section>
+						<h2>map</h2>
+						<img src="./map.png">
+					</section>
 
-      <section>
-        <h2>flatMap</h2>
-        <img src="./flatmap.png">
-      </section>
-    </section>
+					<section>
+						<h2>flatMap</h2>
+						<span>transform the items emitted by an Observable into Observables, then flatten the emissions from those into a single Observable</span>
+						<img src="./flatmap.png">
+					</section>
+				</section>
 
-    <section>
-      <h1>Schedulers</h1>
+				<section>
+					<h1>Schedulers</h1>
 
-      <section></section>
+					<section></section>
 
-      <section>
-        <ul>
-          <li>Observable Streams sind nicht grundsätzlich asynchron!</li>
-          <li>Schedulers verlagern den Observer und die Operatoren in Threads</li>
-        </ul>
-        <pre class="fragment">obs$.observeOn(Schedulers.io()).map(i -> ioBound(i));
+					<section>
+						<ul>
+							<li>Observable Streams sind nicht grundsätzlich asynchron!</li>
+							<li>Schedulers verlagern den Observer und die Operatoren in Threads</li>
+						</ul>
+						<pre class="fragment">obs$.observeOn(Schedulers.io()).map(i -> ioBound(i));
 obs$.observeOn(Schedulers.computation()).map(i -> heavyOnCpu(i));</pre>
-      </section>
-    </section>
+					</section>
+				</section>
 
-    <section>
-      <h1>Java 9 Flow API</h1>
-      <ul>
-        <li>ab Java 9</li>
-        <li>Reactive Programming basierend auf http://www.reactive-streams.org/</li>
-        <li>Observable -> Flowable</li>
-        <li>*Subject -> *Processor</li>
-      </ul>
-    </section>
+				<section>
+					<h1>Java 9 Flow API</h1>
+					<ul>
+						<li>ab Java 9</li>
+						<li>Reaktive Programmierung basierend auf http://www.reactive-streams.org/</li>
+						<li>Observable -> Flowable</li>
+						<li>*Subject -> *Processor</li>
+					</ul>
+				</section>
 
-    <section>
-      <h1>Diverses</h1>
-      <ul>
-        <li>Ratpack - https://ratpack.io/</li>
-        <li>Akka - http://akka.io/</li>
-        <li>RxJS</li>
-      </ul>
-    </section>
+				<section>
+					<h1>Diverses</h1>
+					<ul>
+						<li>Ratpack - https://ratpack.io/</li>
+						<li>Akka - http://akka.io/</li>
+						<li>RxJS</li>
+					</ul>
+				</section>
 
-    <section>
-      <h1>Fazit</h1>
+				<section>
+					<h1>Fazit</h1>
 
-      <section data-markdown>
-        <!--@formatter:off-->
+					<section data-markdown>
+						<!--@formatter:off-->
         <script type="text/template">
           - Lernkurve:
             - kurz flach
@@ -429,71 +433,35 @@ obs$.observeOn(Schedulers.computation()).map(i -> heavyOnCpu(i));</pre>
           - http://rxmarbles.com
         </script>
         <!--@formatter:on-->
-      </section>
+					</section>
 
-    </section>
+				</section>
 
-    <section>
-      <p>Roman Roelofsen - w11k GmbH</p>
+				<section>
+					<p>Jan Blankenhorn - W11K GmbH</p>
 
-      <p>@romanroe</p>
-    </section>
+					<p>@jblankenhorn</p>
+				</section>
 
 
-  </div>
+			</div>
+		</div>
 
-</div>
+		<script src="lib/js/head.min.js"></script>
+		<script src="js/reveal.js"></script>
 
-<script src="lib/js/head.min.js"></script>
-<script src="js/reveal.js"></script>
-
-<script>
-
-    // Full list of configuration options available at:
-    // https://github.com/hakimel/reveal.js#configuration
-    Reveal.initialize({
-        controls: true,
-        margin: 0.05,
-        progress: true,
-        slideNumber: true,
-        history: true,
-        center: true,
-
-        transition: 'slide', // none/fade/slide/convex/concave/zoom
-
-        // Optional reveal.js plugins
-        dependencies: [
-            {
-                src: 'lib/js/classList.js', condition: function () {
-                return !document.body.classList;
-            }
-            },
-            {
-                src: 'plugin/markdown/marked.js', condition: function () {
-                return !!document.querySelector('[data-markdown]');
-            }
-            },
-            {
-                src: 'plugin/markdown/markdown.js', condition: function () {
-                return !!document.querySelector('[data-markdown]');
-            }
-            },
-            {
-                src: 'plugin/highlight/highlight.js',
-                async: true,
-//        condition: function () {
-//          return !!document.querySelector('pre code');
-//        },
-                callback: function () {
-                    hljs.initHighlightingOnLoad();
-                }
-            },
-            {src: 'plugin/zoom-js/zoom.js', async: true},
-            {src: 'plugin/notes/notes.js', async: true}
-        ]
-    });
-
-</script>
-
-</body>
+		<script>
+			// More info about config & dependencies:
+			// - https://github.com/hakimel/reveal.js#configuration
+			// - https://github.com/hakimel/reveal.js#dependencies
+			Reveal.initialize({
+				dependencies: [
+					{ src: 'plugin/markdown/marked.js' },
+					{ src: 'plugin/markdown/markdown.js' },
+					{ src: 'plugin/notes/notes.js', async: true },
+					{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } }
+				]
+			});
+		</script>
+	</body>
 </html>

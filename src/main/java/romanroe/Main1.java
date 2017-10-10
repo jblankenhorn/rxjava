@@ -1,64 +1,80 @@
 package romanroe;
 
+import io.reactivex.Observable;
+import io.reactivex.Observer;
+import io.reactivex.disposables.Disposable;
+
+import java.util.concurrent.TimeUnit;
+
 public final class Main1 {
 
-    public static void main(String[] args) throws InterruptedException {
+	public static void main(String[] args) throws InterruptedException {
 
-//        Observable<Integer> obs1$ = Observable.just(1, 2, 3);
-//        Observable<String> obs2$ = Observable.just("a", "b", "c");
-//        obs1$.zipWith(obs2$, (a, b) -> a + "-" + b)
-//                .subscribe(System.out::println);
+		final Observable<Integer> obs1$ = Observable.just(1, 2, 3, 4);
 
+/*
+		obs1$
+				.filter(item -> item > 1)
+				.map(item -> item + "_")
+				.subscribe(System.out::println);
+*/
+/*		final Observable<String> obs2$ = Observable.just("a", "b", "c");
 
-//        Observable<Integer> obs3$ = Observable.create(e -> {
-//            for (int i = 0; i < 5; i++) {
-//                e.onNext(i);
-//            }
-//        });
+		obs1$.zipWith(obs2$, (a, b) -> a + "-" + b)
+				.subscribe(System.out::println);*/
 
-//        Observable<Integer> obs4$ = Observable.create(e -> {
-//            for (int i = 0; i < 5; i++) {
-//                e.onNext(i);
-//            }
-//        });
+		final Observable<Object> obs3$ = Observable.create(o -> {
+			for (int i = 0; i < 5; i++) {
 
-//        obs3$
-//                .zipWith(obs4$, (a, b) -> a + "-" + b)
-//                .subscribe(System.out::println);
+				o.onNext(i);
+			}
 
+		});
 
-//        Observable<Long> obs5 = Observable.intervalRange(0, 5, 0, 1000, TimeUnit.MILLISECONDS);
-//        Observable<Long> obs6 = Observable.intervalRange(100, 5, 3000, 500, TimeUnit.MILLISECONDS);
-//        obs5
-//                .withLatestFrom(obs6, (a, b) -> a + "-" + b)
-//                .subscribe(System.out::println);
+//		obs3$.subscribe(System.out::println);
 
+		final Observable<Long> obs5$ =
+				Observable.intervalRange(0, 5, 0, 1000, TimeUnit.MILLISECONDS);
 
-//        Observable<Object> obsError = Observable.create(o -> {
-//            o.onNext(1);
-//            o.onNext(2);
-//            o.onError(new RuntimeException("e"));
-//            o.onNext(3);
-//        });
+		final Observable<Long> obs6$ =
+				Observable.intervalRange(100, 5, 300, 500, TimeUnit.MILLISECONDS);
 
-//        obsError.subscribe(new Observer<Object>() {
-//            public void onSubscribe(Disposable d) {
-//                System.out.println("onSubscribe");
-//            }
-//            public void onNext(Object aLong) {
-//                System.out.println("aLong = " + aLong);
-//            }
-//            public void onError(Throwable e) {
-//                System.out.println("onError:" + e.toString());
-//            }
-//            public void onComplete() {
-//                System.out.println("onComplete");
-//            }
-//        });
+		/*obs5$.withLatestFrom(obs6$, (a, b) -> a + "-" + b)
+				.subscribe(System.out::println);*/
 
+		final Observable<Object> obsError = Observable.create(o -> {
+			o.onNext(1);
+			o.onNext(2);
+			o.onError(new RuntimeException("Fehler beim JFS???"));
+			o.onNext(3);
+		});
 
-//        Thread.sleep(10000);
-    }
+		obsError.subscribe(new Observer<Object>() {
+			@Override
+			public void onSubscribe(Disposable disposable) {
+				System.out.println("sub");
+			}
+
+			@Override
+			public void onNext(Object o) {
+				System.out.println("next val = " + o);
+
+			}
+
+			@Override
+			public void onError(Throwable throwable) {
+				System.out.println("Error " + throwable.toString());
+
+			}
+
+			@Override
+			public void onComplete() {
+
+			}
+		});
+
+		Thread.sleep(10000);
+	}
 
 
 }
