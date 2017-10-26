@@ -4,7 +4,7 @@
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
-		<title>reveal.js</title>
+		<title>ReactiveRX mit RxJava</title>
 
 		<link rel="stylesheet" href="css/reveal.css">
 		<link rel="stylesheet" href="css/theme/simple.css">
@@ -80,22 +80,31 @@
 					</small>
 				</section>
 
+				<section>
 				<!-- Über mich -->
-				<section data-markdown>
-					<!--@formatter:off-->
-      <script type="text/template">
-        ## Über mich
-        - Entwickler, Trainer, Geschäftsführer
-        - W11K GmbH - <i>The Web Engineers</i> (Esslingen, Bonn)
-          - Individualsoftware
-          - Java / Angular
-        - theCodeCampus.de
-          - Schulungsanbieter Angular & TypeScript
-          - öffentliche & Inhouse Schulungen
-      </script>
-      <!--@formatter:on-->
-				</section>
 
+					<section data-background="#1d2096">
+						<h2>Über mich</h2>
+						<img src="./w11k_white.png" style="border:none; box-shadow: none; background: none">
+						<ul>
+							<li>Entwickler, Geschäftsführer</li>
+							<li>Individualsoftware (Java / Angular)</li>
+							<li>10 Jahre Java</li>
+							<li>5 Jahre Angular</li>
+						</ul>
+					</section>
+
+				<!-- Über mich -->
+				<section data-background="#ee5d26">
+					<h2>http://www.theCodeCampus.de</h2>
+					<img src="./CCWeissTransparent2.png" style="border:none; box-shadow: none; background: none">
+					<ul>
+						<li>Trainer</li>
+						<li>Schulungen für Angular und TypeScript</li>
+						<li>~100 Schulungen seit 2015</li>
+					</ul>
+				</section>
+				</section>
 				<!-- Reaktive Programmierung -->
 				<section>
 
@@ -114,14 +123,14 @@
 					<section>
 						<h2>Im Kleinen</h2>
 						<ul>
-							<li>Strom von Daten: <span class="fragment">Liste</span></li>
-							<li>Änderungen verfolgen: <span class="fragment">Events (Mouse-Clicks, ...)</span></li>
+							<li>Strom von Daten: <b class="fragment">Liste</b></li>
+							<li>Änderungen verfolgen: <b class="fragment">Events (Mouse-Clicks, ...)</b></li>
 						</ul>
 
 						<h2>Im Großen</h2>
 						<ul>
-							<li>Strom von Daten: <span class="fragment">Web-Sockets</span></li>
-							<li>Änderungen verfolgen: <span class="fragment">Message Bus</span></li>
+							<li>Strom von Daten: <b class="fragment">Web-Sockets</b></li>
+							<li>Änderungen verfolgen: <b class="fragment">Message Bus</b></li>
 						</ul>
 					</section>
 
@@ -133,20 +142,30 @@
 						<h2>Liste</h2>
 						<ul class="fragment">
 							<li><code>java.util.Iterator</code></li>
-							<li>Synchron, Pull</li>
+							<li>Synchron, Daten per Pull</li>
 							<li>Kein Fehler-Konzept</li>
 						</ul>
-						<h2>Events</h2>
+						<h2 class="fragment">Events</h2>
 						<ul class="fragment">
-							<li>Callback <code>java.util.function.Function&lt;T, R&gt;</code></li>
-							<li>Asynchron, Push</li>
+							<li>Callback <ul>
+								<li><code>java.util.function.Function&lt;T, R&gt;</code></li>
+							</ul></li>
+							<li>Asynchron, Daten per Push</li>
 							<li>Kein standardisiertes Fehler-Konzept</li>
 						</ul>
 					</section>
 
 					<section>
 						<div class="center bold">
-							Reaktive Programmierung = <span>Iterator</span> + <span>Callback</span>
+							Reaktive Programmierung
+							ist die Kombination von
+						</div>
+						<div class="vspace"></div>
+						<div class="center bold fragment">
+							Iterator
+						</div>
+						<div class="center bold fragment">
+							und Callback
 						</div>
 						<div class="vspace"></div>
 						<div class="center bold fragment">
@@ -224,19 +243,12 @@
 
 					<section>
 						<h2>cold vs hot</h2>
-						<ul class="fragment">
-						<li>
-							<i>Cold observables start running upon subscription,....</i>
-						</li>
-						</ul>
-
-						<ul class="fragment">
-							<li>
-
-						<i>This is different from hot
-							observables such as mouse move events or stock tickers which are already producing values even before a
-							subscription is active.</i>
-							</li>
+						<ul>
+							<li class="fragment"><b>Cold</b> observables start running upon subscription,....</li>
+							<li class="fragment">This is different from <b>hot</b>
+								observables such as mouse move events or stock tickers which are already producing values even before a
+								subscription is active.</li>
+								</li>
 						</ul>
 					</section>
 

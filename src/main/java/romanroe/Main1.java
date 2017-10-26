@@ -10,22 +10,28 @@ public final class Main1 {
 
 	public static void main(String[] args) throws InterruptedException {
 
+
+
+
 		final Observable<Integer> obs1$ = Observable.just(1, 2, 3, 4);
 
-/*
-		obs1$
-				.filter(item -> item > 1)
-				.map(item -> item + "_")
-				.subscribe(System.out::println);
-*/
-/*		final Observable<String> obs2$ = Observable.just("a", "b", "c");
+//		obs1$
+//				.filter(value -> value > 2)
+//				.map(value -> value * 2)
+//				.map(value -> value + "__")
+//				.subscribe(value -> System.out.println(value));
 
-		obs1$.zipWith(obs2$, (a, b) -> a + "-" + b)
-				.subscribe(System.out::println);*/
+		final Observable<String> obs2$ = Observable.just("a", "b", "c");
+//
+//		obs1$.zipWith(obs2$, (a, b) -> a + "-" + b)
+//				.subscribe(System.out::println);
+
 
 		final Observable<Object> obs3$ = Observable.create(o -> {
-			for (int i = 0; i < 5; i++) {
 
+			for (int i = 0; i < 5; i++) {
+				// wird nur aufgerufen, wenn auch subscribed wird
+				System.out.println("onNext");
 				o.onNext(i);
 			}
 
@@ -33,45 +39,60 @@ public final class Main1 {
 
 //		obs3$.subscribe(System.out::println);
 
+
+
 		final Observable<Long> obs5$ =
-				Observable.intervalRange(0, 5, 0, 1000, TimeUnit.MILLISECONDS);
+				Observable.intervalRange(0, 15, 0, 500, TimeUnit.MILLISECONDS);
 
 		final Observable<Long> obs6$ =
-				Observable.intervalRange(100, 5, 300, 500, TimeUnit.MILLISECONDS);
+				Observable.intervalRange(100, 5, 300, 700, TimeUnit.MILLISECONDS);
 
-		/*obs5$.withLatestFrom(obs6$, (a, b) -> a + "-" + b)
-				.subscribe(System.out::println);*/
+
+
+//		obs5$.withLatestFrom(obs6$, (a, b) -> a + "-" + b)
+//				.subscribe(System.out::println);
+
+
+
+
+
+
 
 		final Observable<Object> obsError = Observable.create(o -> {
 			o.onNext(1);
 			o.onNext(2);
-			o.onError(new RuntimeException("Fehler???"));
-			o.onNext(3);
+			throw new RuntimeException("asdasd");
+
+//			o.onError(new RuntimeException("Fehler???"));
+//			o.onNext(3);
 		});
 
-		obsError.subscribe(new Observer<Object>() {
-			@Override
-			public void onSubscribe(Disposable disposable) {
-				System.out.println("sub");
-			}
+		obsError.subscribe(System.out::println);
 
-			@Override
-			public void onNext(Object o) {
-				System.out.println("next val = " + o);
+//		obsError.subscribe(new Observer<Object>() {
+//			@Override
+//			public void onSubscribe(Disposable disposable) {
+//				System.out.println("sub");
+//			}
+//
+//			@Override
+//			public void onNext(Object o) {
+//				System.out.println("next val = " + o);
+//
+//			}
+//
+//			@Override
+//			public void onError(Throwable throwable) {
+//				System.out.println("Error " + throwable.toString());
+//
+//			}
+//
+//			@Override
+//			public void onComplete() {
+//
+//			}
+//		});
 
-			}
-
-			@Override
-			public void onError(Throwable throwable) {
-				System.out.println("Error " + throwable.toString());
-
-			}
-
-			@Override
-			public void onComplete() {
-
-			}
-		});
 
 		Thread.sleep(10000);
 	}
